@@ -1,17 +1,19 @@
 pipeline {
     agent any
     stages {
-        stage('Testing Maven') {
-            steps {
-                sh "mvn -version"
-            }
-        }
+
 
         stage('Git Checkout') {
             steps {
                 echo 'Pulling from Git...'
-                git branch: 'ahmedl',
+                git branch: 'ahmedL',
                 url: 'https://github.com/JALELMohamedSalah/Achat.git'
+            }
+        }
+
+        stage('Testing Maven') {
+            steps {
+                sh "mvn -version"
             }
         }
 
