@@ -71,7 +71,7 @@ pipeline {
                 script {
                     withCredentials([usernamePassword(credentialsId: "dockerHubCred", usernameVariable: "DOCKERHUB_USERNAME", passwordVariable: "DOCKERHUB_PASSWORD")]) {
                         sh "docker login --username ${DOCKERHUB_USERNAME} --password ${DOCKERHUB_PASSWORD}"
-                        sh "docker push ahmed217/jenkins-test:${imageTag}"
+                        sh "docker push ahmed217/ahmed217:${imageTag}"
                         sh "docker logout"
                     }
                 }
