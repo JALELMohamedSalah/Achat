@@ -71,6 +71,9 @@
 			<version>0.8.7</version>
 			<scope>test</scope>
 		</dependency>
+
+
+	</dependencies>
 <distributionManagement>
 <repository>
 <id>deploymentRepo</id>
@@ -78,9 +81,6 @@
 <url>http://192.168.100.156:8081/repository/maven-releases/</url>
 </repository>
 </distributionManagement>
-
-	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
