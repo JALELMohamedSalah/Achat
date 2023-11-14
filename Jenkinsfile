@@ -17,6 +17,18 @@ pipeline {
         }
 
 
+stage('Clean and Build') {
+            steps {
+                script {
+                    dir('DevOps_Project') {
+                        sh 'mvn clean'
+                        sh 'mvn package -DskipTests'
+                    }
+                }
+            }
+        }
+
+
    stage("Publish to Nexus Repository Manager") {
             steps {
                 script {
