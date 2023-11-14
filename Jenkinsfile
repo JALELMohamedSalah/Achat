@@ -75,3 +75,9 @@ pipeline {
                     withDockerRegistry([credentialsId: "dockerHubCred", url: "https://index.docker.io/v1/"]) {
                         // Utilisation de la variable imageTag déclarée dans la portée globale
                         sh "docker push ${DOCKER_IMAGE_NAME}:${imageTag}"
+                    }
+                }
+            }
+        }
+    }
+}
