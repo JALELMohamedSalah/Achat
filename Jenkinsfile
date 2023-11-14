@@ -16,41 +16,6 @@ pipeline {
             }
         }
 
-        stage('Testing Maven') {
-            steps {
-                sh "mvn -version"
-            }
-        }
-
-        stage('Maven Clean') {
-            steps {
-                sh "mvn clean"
-            }
-        }
-
-        stage('Maven Compile') {
-            steps {
-                sh "mvn compile"
-            }
-        }
-
-        stage('Maven Package') {
-            steps {
-                sh "mvn package"
-            }
-        }
-
-        stage('Maven Verify') {
-            steps {
-                sh "mvn verify"
-            }
-        }
-
-        stage('Maven Install') {
-            steps {
-                sh "mvn install"
-            }
-        }
 
    stage("Publish to Nexus Repository Manager") {
             steps {
