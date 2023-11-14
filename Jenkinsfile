@@ -1,8 +1,11 @@
 pipeline {
     agent any
+
+    environment {
+        DOCKER_IMAGE_NAME = 'ahmed217/jenkins-test'
+    }
+
     stages {
-
-
         stage('Git Checkout') {
             steps {
                 echo 'Pulling from Git...'
@@ -53,14 +56,14 @@ pipeline {
             }
         }
 
- 
         stage('Build Docker Image') {
             steps {
                 script {
                     def buildNumber = currentBuild.number
                     def imageTag = "1.0.${buildNumber}"
-                    withCredentials([usernamePassword(credentialsId: "dockerHubCred", usernameVariable: "DOCKERHUB_USERNAME", passwordVariable: "DOCKERHUB_PASSWORD")]) {
-                        def dockerImage = docker.build("ahmed217/jenkins-test:${imageTag}")
+                    
+                    withDockerRegistry([credentialsId: "dockerHubCred", url: "https://index.docker.io/v1/"]) {
+                        def dockerImage = docker.build("${DOCKER_IMAGE_NAME}:${imageTag}")
                     }
                 }
             }
@@ -69,10 +72,8 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: "dockerHubCred", usernameVariable: "DOCKERHUB_USERNAME", passwordVariable: "DOCKERHUB_PASSWORD")]) {
-                        sh "docker login --username ${DOCKERHUB_USERNAME} --password ${DOCKERHUB_PASSWORD}"
-                        sh "docker push ahmed217/ahmed217:${imageTag}"
-                        sh "docker logout"
+                    withDockerRegistry([credentialsId: "dockerHubCred", url: "https://index.docker.io/v1/"]) {
+                        sh "docker push ${DOCKER_IMAGE_NAME}:${imageTag}"
                     }
                 }
             }
