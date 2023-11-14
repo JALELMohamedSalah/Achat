@@ -52,17 +52,13 @@ pipeline {
             }
         }
 
-   stage("Publish to Nexus Repository Manager") {
-            steps {
-                sh "mvn deploy "
-            }
-        }
         stage('Docker version') {
             steps {
                 sh "docker --version"
             }
         }
 
+    stages {
         stage('Build Docker Image') {
             steps {
                 script {
