@@ -45,10 +45,10 @@ pipeline {
                 sh "mvn verify"
             }
         }
- stage('Maven sonar') {
+stage('Maven sonar') {
     steps {
-        withCredentials([string(credentialsId: 'SonarCredentials', variable: 'SONAR_TOKEN')]) {
-            sh "mvn sonar:sonar -Dsonar.host.url=http://192.168.100.156:9000 -Dsonar.login=$SONAR_TOKEN"
+        withCredentials([string(credentialsId: 'Cred', variable: 'SONAR_TOKEN')]) {
+            sh "mvn sonar:sonar -Dsonar.host.url=http://192.168.100.156:9000 -Dsonar.login=${SONAR_TOKEN}"
         }
     }
 }
