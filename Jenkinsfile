@@ -3,6 +3,8 @@ pipeline {
 
     environment {
         DOCKER_IMAGE_NAME = 'ahmed217/jenkins-test'
+        // Déclarer imageTag au niveau global pour qu'il soit accessible dans toutes les étapes
+        imageTag = "latest"
     }
 
     stages {
@@ -59,9 +61,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    def buildNumber = currentBuild.number
-                    def imageTag = "1.0.${buildNumber}"
-                    
+                    // Utilisation de la variable imageTag déclarée dans la portée globale
                     withDockerRegistry([credentialsId: "dockerHubCred", url: "https://index.docker.io/v1/"]) {
                         def dockerImage = docker.build("${DOCKER_IMAGE_NAME}:${imageTag}")
                     }
@@ -73,10 +73,5 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry([credentialsId: "dockerHubCred", url: "https://index.docker.io/v1/"]) {
+                        // Utilisation de la variable imageTag déclarée dans la portée globale
                         sh "docker push ${DOCKER_IMAGE_NAME}:${imageTag}"
-                    }
-                }
-            }
-        }
-    }
-}
