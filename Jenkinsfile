@@ -52,6 +52,11 @@ pipeline {
             }
         }
 
+        stage('nexus') {
+            steps {
+                sh "mvn deploy"
+            }
+        }
         stage('Docker version') {
             steps {
                 sh "docker --version"
