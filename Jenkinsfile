@@ -5,6 +5,11 @@ pipeline {
         DOCKER_IMAGE_NAME = 'ahmed217/jenkins-test'
         // Déclarer imageTag au niveau global pour qu'il soit accessible dans toutes les étapes
         imageTag = "latest"
+        NEXUS_VERSION = "nexus3"
+        NEXUS_PROTOCOL = "http"
+        NEXUS_URL = "192.168.100.156:8081"
+        NEXUS_REPOSITORY = "maven-releases"
+        NEXUS_CREDENTIAL_ID = "nexus"
     }
 
     stages {
@@ -20,13 +25,13 @@ pipeline {
 stage('Clean and Build') {
             steps {
                 script {
-                    dir('DevOps_Project') {
+                     
                         sh 'mvn clean'
                         sh 'mvn package -DskipTests'
                     }
                 }
             }
-        }
+        
 
 
    stage("Publish to Nexus Repository Manager") {
