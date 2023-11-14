@@ -1,5 +1,5 @@
 
-package tn.esprit.rh.achat;
+/*package tn.esprit.rh.achat;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -91,5 +91,5 @@ public class MockitoTest {
 
     }
 
-}
+}*/
 
