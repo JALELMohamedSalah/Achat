@@ -57,6 +57,7 @@ pipeline {
                 sh "docker --version"
             }
         }
+    } // Fermeture manquante ici
 
     stages {
         stage('Build Docker Image') {
