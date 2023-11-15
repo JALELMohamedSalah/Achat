@@ -44,7 +44,7 @@ services:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
     volumes:
-      - /var/lib/grafana-data:/var/lib/grafana
+      - grafana-data:/var/lib/grafana
     network_mode: "host"
    
   # Nexus
@@ -54,7 +54,7 @@ services:
     ports:
       - "8081:8081"
     volumes:
-      - /var/lib/nexus-data:/nexus-data
+      - nexus-data:/nexus-data
 
 networks:
   mynetwork:
