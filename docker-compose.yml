@@ -34,8 +34,6 @@ services:
   prometheus:
     image: prom/prometheus
     container_name: prometheus
-    command:
-      - "--config.file=/etc/prometheus/prometheus.yml"
     network_mode: "host" # Set the network mode to "host" for Prometheus
 
   # Grafana
